@@ -1,4 +1,3 @@
-CREATE DATABASE `final-coba`;
-DROP DATABASE `final-coba`;
+CREATE DATABASE `final-project-private`;
 
-select * from users
+select * from `final-project-private`.users

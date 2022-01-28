@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ImgToBase64;
 use App\Models\Profile;
 use App\Models\Pertanyaan;
 use App\Models\Jawaban;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 
 //Sweet alert
@@ -16,7 +18,7 @@ class jawabanController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
@@ -25,7 +27,7 @@ class jawabanController extends Controller
         $user = User::all();
         $pertanyaan = Pertanyaan::all();
         $profile = Profile::all();
-        return view('admin.jawaban.index', compact('pertanyaan', 'user','jawaban','profile'));
+        return view('admin.jawaban.index', compact('pertanyaan', 'user', 'jawaban', 'profile'));
     }
 
     /**
@@ -41,16 +43,11 @@ class jawabanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'profile' => 'required',
-        //     'Pertanyaan' => 'required',
-        //     'Jawaban' => 'required'
-        // ]);
         $profile_id = Profile::select()
             ->where('id', $request->profile)
             ->get();
@@ -60,13 +57,11 @@ class jawabanController extends Controller
         }
 
         $jawaban = new Jawaban;
-        $jawaban->isi = $request->Jawaban;
+        $jawaban->isi = ImgToBase64::convert($request->jawaban);
         $jawaban->pertanyaan_id = $request->pertanyaan;
         $jawaban->user_id = $profile;
         $jawaban->save();
 
-
-        // Jawaban::create(['isi' => $request->Jawaban, 'pertanyaan_id' => $request->Pertanyaan, 'profile_id' => $profile]);
         Alert::success('Berhasil', 'Jawaban Berhasil di tambahkan');
         return redirect('jawaban')->with('sukses', 'data anda berhasil di tambahkan');
     }
@@ -74,7 +69,7 @@ class jawabanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Jawaban  $jawaban
+     * @param \App\Models\Jawaban $jawaban
      * @return \Illuminate\Http\Response
      */
     public function show(Jawaban $jawaban)
@@ -85,8 +80,8 @@ class jawabanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Jawaban  $jawaban
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Jawaban $jawaban
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -97,9 +92,9 @@ class jawabanController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Jawaban  $jawaban
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Jawaban $jawaban
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
@@ -107,7 +102,7 @@ class jawabanController extends Controller
             'jawaban' => 'required'
         ]);
         Jawaban::where('id', $id)
-        ->update(['isi' => $request->jawaban]);
+            ->update(['isi' => ImgToBase64::convert($request->jawaban)]);
         Alert::success('Berhasil', 'Jawaban Berhasil di update');
         return redirect('jawaban')->with('sukses', 'data anda berhasil di update');
     }
@@ -115,8 +110,8 @@ class jawabanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Jawaban  $jawaban
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Jawaban $jawaban
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Jawaban $jawaban, $id)
     {

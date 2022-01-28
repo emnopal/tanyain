@@ -20,9 +20,9 @@
                     </div>
                     <div class="media-body pl-1">
                         <h3 class="dropdown-item-title font-weight-bold text-dark">
-                        @ {{ Auth::user()->name }}
+                        @ {{ Auth::user()->username }}
                         </h3>
-                        <p class="text-sm font-weight-bold text-dark">{{ Auth::user()->profile->nama_lengkap }} </p>
+                        <p class="text-sm font-weight-bold text-dark">{{ Auth::user()->profile->nama }} </p>
                     </div>
                     <span class="ml-2 font-weight-bold text-dark"><i class="fas fa-angle-down"></i></span>
                 </a>

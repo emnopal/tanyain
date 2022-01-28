@@ -1,6 +1,6 @@
 @extends('layout.home')
 @section('header')
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 @section('content')
     <section class="card" style="background: #29b6f6;">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                         <label for="exampleInputPassword1">Masukan jawaban anda</label>
-                        <textarea name="isi" id="isi" class="form-control my-editor">{!!$jawaban->isi!!}</textarea>
+                        <textarea name="isi" id="isi" class="form-control my-editor summernote">{!!$jawaban->isi!!}</textarea>
                         @error('isi')
                         <div class="invalid-feedback mt-2">{{ $message }}</div>
                         @enderror
@@ -33,40 +33,12 @@
     </section>
 @endsection
 @section('footer')
-    <script>
-        var editor_config = {
-        path_absolute : "/",
-        selector: "textarea.my-editor",
-        plugins: [
-        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-        "searchreplace wordcount visualblocks visualchars code fullscreen",
-        "insertdatetime media nonbreaking save table contextmenu directionality",
-        "emoticons template paste textcolor colorpicker textpattern"
-        ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-        relative_urls: false,
-        file_browser_callback : function(field_name, url, type, win) {
-        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
-
-        var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
-        if (type == 'image') {
-            cmsURL = cmsURL + "&type=Images";
-        } else {
-            cmsURL = cmsURL + "&type=Files";
-        }
-
-        tinyMCE.activeEditor.windowManager.open({
-            file : cmsURL,
-            title : 'Filemanager',
-            width : x * 0.8,
-            height : y * 0.8,
-            resizable : "yes",
-            close_previous : "no"
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 170
+            });
         });
-        }
-    };
-
-    tinymce.init(editor_config);
     </script>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ImgToBase64;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\tag;
@@ -17,14 +18,14 @@ class PertanyaanController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
         $profile = Profile::orderBy('created_at', 'desc')->paginate(5);
         $pertanyaan = Pertanyaan::orderBy('created_at', 'desc')->paginate(5);
         $user = User::all();
-        return view('admin.pertanyaan.index', compact('pertanyaan','profile','user'));
+        return view('admin.pertanyaan.index', compact('pertanyaan', 'profile', 'user'));
     }
 
     /**
@@ -40,8 +41,8 @@ class PertanyaanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     // tambah
     public function store(Request $request)
@@ -51,62 +52,36 @@ class PertanyaanController extends Controller
             'judul' => 'required|min:8',
             'isi' => 'required'
         ]);
-        // tags pivot (algoritma)
-        // di rubah menjadi array
-        // 1. explode untuk mengubah request tag menjadi array
-        // 2. looping ke array tags tadi, buat array penampug
-        // 3. setiap looping lakukan pengecekan
-        // 4. kalau sudah ada ambil id nya
-        // 5. kalau belum ada sipain dulu tagnya lalu ambil idnya
-        // 6. tampung id di array penampung
-                        // pemisah,  isinya
-        $tags_arr = explode(',',$request["tags"]);
 
-        // looping array
-        // array kosong
+        $tags_arr = explode(',', $request["tags"]);
+
         $tags_id = [];
-        foreach($tags_arr as $tag_name){
-            // mencari tagname
-            // $tag = tag::where("tag_name", $tag_name)->first();
-            // jika tag
-            // if ($tag) {
-            //     $tags_id[] = $tag->id;
-            // }else{
-            //         $new_tag = tag::create(['tag_name' => $tag_name]);
-            //         $tags_id[] = $new_tag->id;
-            // }
-
-            // yang lebih simpel
+        foreach ($tags_arr as $tag_name) {
             $tag = tag::firstOrCreate(['tag_name' => $tag_name]);
             $tags_id[] = $tag->id;
         }
 
 
-
         $pertanyaan = new Pertanyaan;
         $pertanyaan->judul = $request->judul;
-        $pertanyaan->isi = $request->isi;
+        $pertanyaan->isi = ImgToBase64::convert($request->isi);
         $pertanyaan->user_id = $request->profile;
 
         $pertanyaan->save();
 
-        // menyimpan id
         $pertanyaan->tags()->sync($tags_id);
-        // menambahkan ke pertayaan_id  baru di pertanyaan_tags
         $user = User::find($request->profile);
         $user->pertanyaan()->save($pertanyaan);
 
-
         Alert::success('Berhasil', 'Pertanyaan Berhasil di tambahkan');
-        // Pertanyaan::create(['judul' => $request->judul, 'isi' => $request->isi, 'user_id' => $request->profile]);
-        return redirect('Pertanyaan')->with('sukses','data anda berhasil di tambahkan');
+        return redirect('Pertanyaan')->with('sukses', 'data anda berhasil di tambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pertanyaan  $pertanyaan
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Pertanyaan $pertanyaan
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     // detail
     public function show($id)
@@ -118,8 +93,8 @@ class PertanyaanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pertanyaan  $pertanyaan
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Pertanyaan $pertanyaan
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     // edit
     public function edit($id)
@@ -131,9 +106,9 @@ class PertanyaanController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pertanyaan  $pertanyaan
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Pertanyaan $pertanyaan
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     // uodate
     public function update(Request $request, $id)
@@ -143,7 +118,7 @@ class PertanyaanController extends Controller
             'isi' => 'required'
         ]);
         Pertanyaan::where('id', $id)
-        ->update(['judul' => $request->judul, 'isi' => $request->isi]);
+            ->update(['judul' => $request->judul, 'isi' => ImgToBase64::convert($request->isi)]);
         Alert::success('Berhasil', 'Pertanyaan Berhasil di Update');
         return redirect('Pertanyaan')->with('sukses', 'data anda berhasil di update');
     }
@@ -151,8 +126,8 @@ class PertanyaanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pertanyaan  $pertanyaan
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Pertanyaan $pertanyaan
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     // hapus
     public function destroy(Pertanyaan $pertanyaan, $id)

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Profile;
 use App\Models\Pertanyaan;
 use App\Models\Jawaban;
@@ -16,13 +17,13 @@ class profileController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
         $profile = Profile::orderBy('created_at', 'desc')->paginate(5);
         $user = User::orderBy('created_at', 'desc')->paginate(5);
-        return view('admin.profile.index', compact('profile','user'));
+        return view('admin.profile.index', compact('profile', 'user'));
     }
 
     /**
@@ -38,23 +39,21 @@ class profileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'nama_lengkap' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email',
-            'password' => 'required'
+            'nama' => 'required',
+            'bio' => 'required',
+            'alamat' => 'required|email',
         ]);
         $profile = new Profile;
 
         $user = new User;
-        $user->role = 'users';
-        $user->name = $request->username; // mengambil dari requst name="nama
+        $user->role = 'user';
+        $user->username = $request->username; // mengambil dari requst name="nama
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->remember_token = Str::random(60);
@@ -71,14 +70,14 @@ class profileController extends Controller
             $profile->save();
         }
         Alert::success('Berhasil', 'Profile & user Berhasil di tambahkan');
-        return redirect('/profile')->with('sukses','data anda berhasil di tambahkan');
+        return redirect('/profile')->with('sukses', 'data anda berhasil di tambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -89,8 +88,8 @@ class profileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -103,31 +102,30 @@ class profileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
         $request->validate([
-            'username' => 'required',
-            'nama_lengkap' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'foto' =>  'required'
+            'nama' => 'required',
+            'bio' => 'required',
+            'alamat' => 'required|email',
+            'foto' => 'required'
         ]);
-    if ($request->hasFile('foto')) {
-        $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
-        Profile::where('user_id', $id)
-            ->update(['nama_lengkap' => $request->nama_lengkap, 'foto' => $request->file('foto')->getClientOriginalName()]);
-        // table user
-        User::where('id', $id)
-            ->update(['name' => $request->username, 'email' => $request->email, 'password' => Hash::make($request->password)]);
+        if ($request->hasFile('foto')) {
+            $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
+            Profile::where('user_id', $id)
+                ->update(['nama' => $request->nama, 'foto' => $request->file('foto')->getClientOriginalName()]);
+            // table user
+            User::where('id', $id)
+                ->update(['username' => $request->username, 'email' => $request->email, 'password' => Hash::make($request->password)]);
 
-    }else{
+        } else {
             Alert::eror('gagal', 'Profile gagal di update');
             return redirect('/profile')->with('eror', 'data anda gagal di update');
-    }
+        }
         Alert::success('Berhasil', 'Profile berhasil di update');
         return redirect('/profile')->with('sukses', 'data anda berhasil di update');
     }
@@ -135,8 +133,8 @@ class profileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
@@ -146,19 +144,22 @@ class profileController extends Controller
         return redirect('profile')->with('eror', 'data anda berhasil di hapus');
     }
 
-    public function ShowPertanyaan($id){
+    public function ShowPertanyaan($id)
+    {
         $user = User::find($id);
         $data = Pertanyaan::select()
             ->where('user_id', $id)
             ->get();
         return view('admin.profile.showData', compact('user', 'data'));
     }
-    public function ShowJawaban($id){
+
+    public function ShowJawaban($id)
+    {
         $user = User::find($id);
         $jawaban = Jawaban::select()
             ->where('user_id', $id)
             ->get();
 
-        return view('admin.profile.showData2', compact('user','jawaban'));
+        return view('admin.profile.showData2', compact('user', 'jawaban'));
     }
 }

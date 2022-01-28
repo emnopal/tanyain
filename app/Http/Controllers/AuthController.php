@@ -69,7 +69,6 @@ class AuthController extends Controller
                 $user->remember_token = Str::random(60);
                 $user->save();
 
-
                 $request->request->add(['user_id' => $user->id, 'nama' => $request->nama]);
                 Profile::create($request->all());
 
