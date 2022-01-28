@@ -33,11 +33,7 @@ class AuthController extends Controller
             $field => $request->email,
             'password' => $request->password,
         ], $ingat)) {
-            if (Auth()->user()->role == 'admin') {
-                return redirect('/');
-            } else if (Auth()->user()->role == 'users') {
-                return redirect('/');
-            }
+            return redirect('/');
         }
         return redirect('/login')->with('status', 'password anda salah');
     }

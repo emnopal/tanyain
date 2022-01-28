@@ -61,7 +61,7 @@ Route::middleware(['web','auth', 'role:admin'])->group(function () {
 });
 
 // untuk user
-Route::middleware(['auth', 'role:users,admin','web'])->group(function () {
+Route::middleware(['auth', 'role:user,admin','web'])->group(function () {
     Route::get('/', [tampilController::class, 'index']);
     Route::get('/forum/create', [ForumController::class, 'create']);
     Route::get('/forum/show/{id}', [ForumController::class, 'show']);
@@ -77,6 +77,7 @@ Route::middleware(['auth', 'role:users,admin','web'])->group(function () {
     Route::delete('/forum/hapus/{id}', [ForumController::class, 'destroy2']);
     Route::get('/following/{id}', [ForumController::class, 'follower']);
     Route::get('/unfollow/{id}', [ForumController::class, 'unfollow']);
+    Route::resource('profile', profileController::class);
 });
 
 

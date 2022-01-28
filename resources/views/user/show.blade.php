@@ -12,7 +12,8 @@
         <div class="card-header">
             <div class="user-block">
                 <img class="img-circle" src="{{$pertanyaan->user->profile->getAvatar()}}" alt="User Image">
-                <span class="username"><a href="#">{{$pertanyaan->user->profile->nama_lengkap}}</a></span>
+                <span class="username"><a href="#">{{$pertanyaan->user->username}}</a></span>
+                <span class="description"><a href="#">{{$pertanyaan->user->profile->nama}}</a></span>
                 <span class="description">{{$pertanyaan->created_at->diffForHumans()}}</span>
             </div>
             <!-- /.user-block -->
@@ -87,7 +88,8 @@
             <div class="card-header">
                 <div class="user-block">
                     <img class="img-circle" src="{{$jwb->user->profile->getAvatar()}}" alt="User Image">
-                    <span class="username"><a href="#">{{$jwb->user->profile->nama_lengkap}}</a></span>
+                    <span class="username"><a href="#">{{$jwb->user->username}}</a></span>
+                    <span class="description"><a href="#">{{$jwb->user->profile->nama}}</a></span>
                     <span class="description">{{$jwb->created_at->diffForHumans()}}</span>
                 </div>
                 <!-- /.user-block -->

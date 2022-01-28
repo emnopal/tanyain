@@ -132,7 +132,7 @@ class ForumController extends Controller
             'isi' => 'required'
         ]);
         Pertanyaan::where('id', $id)
-            ->update(['judul' => $request->judul, 'isi' => ImgToBase64::convert($request->isi)]);
+            ->update(['judul' => $request->judul, 'isi' => $request->isi]);
         Alert::success('Berhasil', 'Pertanyaan Berhasil di Update');
         return redirect('/forum/show/' . $id);
     }
@@ -143,7 +143,7 @@ class ForumController extends Controller
             'isi' => 'required'
         ]);
         Jawaban::where('id', $id)
-            ->update(['isi' => ImgToBase64::convert($request->isi)]);
+            ->update(['isi' => $request->isi]);
         Alert::success('Berhasil', 'Jawaban Berhasil di Update');
         return redirect('/forum/show/' . $request->pertanyaan);
     }
