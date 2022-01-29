@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('title')
-    <h1>DATA pertanyaan {{$user->profile->nama_lengkap}}</h1>
+    <h1>DATA pertanyaan {{$user->profile->nama}}</h1>
 @endsection
 @section('content')
     <div class="card">
@@ -15,7 +15,7 @@
                     <thead>
                         <tr>
                         <th style="width: 10px">no</th>
-                        <th>nama lengkap</th>
+                        <th>username</th>
                         <th>judul</th>
                         <th>isi</th>
                         </tr>
@@ -24,7 +24,7 @@
                     @foreach ($data as $tanya)
                         <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$tanya->user->profile->nama_lengkap}}</td>
+                        <td>{{$tanya->user->username}}</td>
                             <td>{{$tanya->judul}}</td>
                             <td>{!!$tanya->isi!!}</td>
                         </tr>

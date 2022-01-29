@@ -43,14 +43,10 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 //middleware untuk role admin
 Route::middleware(['web','auth', 'role:admin'])->group(function () {
-    Route::get('/', [profileController::class, 'index']);
     // table pertanyaan
-    Route::resource('Pertanyaan', PertanyaanController::class);
-    Route::get('/pertanyaan/{show}', [profileController::class, 'ShowPertanyaan']); // show admin untuk pertanyaan user
-    Route::get('/jawaban/{show}', [profileController::class, 'ShowJawaban']); // show admin untuk jawaban user
-    Route::resource('profile', profileController::class);
+    Route::resource('pertanyaan', PertanyaanController::class)->except('show');
     Route::delete('/hapus/{hapus}', [jawabanController::class, 'Destroy']);
-    Route::resource('jawaban', jawabanController::class);
+    Route::resource('jawaban', jawabanController::class)->except('show');
 
     // Export pdf pertanyaan & jawban
     Route::get('/exportPertanyaan', [exportController::class, 'PDFPertanyaan']);
@@ -62,6 +58,7 @@ Route::middleware(['web','auth', 'role:admin'])->group(function () {
 
 // untuk user
 Route::middleware(['auth', 'role:user,admin','web'])->group(function () {
+    Route::get('/', [profileController::class, 'index']);
     Route::get('/', [tampilController::class, 'index']);
     Route::get('/forum/create', [ForumController::class, 'create']);
     Route::get('/forum/show/{id}', [ForumController::class, 'show']);
@@ -78,6 +75,8 @@ Route::middleware(['auth', 'role:user,admin','web'])->group(function () {
     Route::get('/following/{id}', [ForumController::class, 'follower']);
     Route::get('/unfollow/{id}', [ForumController::class, 'unfollow']);
     Route::resource('profile', profileController::class);
+    Route::get('/pertanyaan/{show}', [profileController::class, 'ShowPertanyaan']); // show admin untuk pertanyaan user
+    Route::get('/jawaban/{show}', [profileController::class, 'ShowJawaban']); // show admin untuk jawaban user
 });
 
 

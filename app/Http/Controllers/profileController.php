@@ -47,7 +47,7 @@ class profileController extends Controller
         $request->validate([
             'nama' => 'required',
             'bio' => 'required',
-            'alamat' => 'required|email',
+            'alamat' => 'required',
         ]);
         $profile = new Profile;
 
@@ -111,7 +111,7 @@ class profileController extends Controller
         $request->validate([
             'nama' => 'required',
             'bio' => 'required',
-            'alamat' => 'required|email',
+            'alamat' => 'required',
             'foto' => 'required'
         ]);
         if ($request->hasFile('foto')) {
