@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Profile;
 use App\Models\tag;
 use App\Models\Pertanyaan;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ class PertanyaanController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
@@ -42,7 +43,7 @@ class PertanyaanController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     // tambah
     public function store(Request $request)
@@ -81,7 +82,7 @@ class PertanyaanController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Pertanyaan $pertanyaan
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     // detail
     public function show($id)
@@ -94,7 +95,7 @@ class PertanyaanController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Pertanyaan $pertanyaan
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     // edit
     public function edit($id)
@@ -108,7 +109,7 @@ class PertanyaanController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Pertanyaan $pertanyaan
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     // uodate
     public function update(Request $request, $id)
@@ -127,7 +128,7 @@ class PertanyaanController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Pertanyaan $pertanyaan
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     // hapus
     public function destroy(Pertanyaan $pertanyaan, $id)
