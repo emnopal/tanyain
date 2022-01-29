@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pertanyaan extends Model
 {
     protected $table = 'pertanyaan';
-    protected $fillable = ['judul', 'isi', 'jawaban_id', 'user_id'];
+    protected $fillable = ['judul', 'isi', 'jawaban_id', 'user_id', 'tag_id'];
     use HasFactory;
 
     // relasi ke profile

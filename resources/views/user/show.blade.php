@@ -163,7 +163,7 @@
             <form action="/forum/jawaban/{{$pertanyaan->id}}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Masukan jawaban anda</label>
+                    <label for="jawaban">Masukan jawaban anda</label>
                     <textarea name="jawaban" id="jawaban" class="form-control my-editor summernote"></textarea>
                     @error('jawaban')
                     <div class="invalid-feedback mt-2">{{ $message }}</div>

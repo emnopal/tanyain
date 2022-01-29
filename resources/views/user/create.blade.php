@@ -11,22 +11,22 @@
             @csrf
             <div class="card-body">
                 <div class="form-group">
-                    <label for="judul">Masukan judul</label>
+                    <label for="judul">Judul</label>
                     <input type="text" class="form-control  @error('judul') is-invalid @enderror" name="Judul"
                            placeholder="masukan judul" id="judul">
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Masukan pertanyaan anda</label>
-                    <textarea name="isi" id="isi" class="form-control summernote"></textarea>
+                <div class="form-group" style="background-color: white !important;">
+                    <label for="isi" style="background: #2ace24; width: 100%" >Isi Pertanyaan</label>
+                    <textarea name="isi" id="isi" class="form-control my-editor summernote" ></textarea>
                     @error('isi')
                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="tags">Kategori</label>
-                    <input type="text" class="form-control" id="tags" name="tags" placeholder="contoh : satu,sdua,tiga">
+                    <input type="text" class="form-control" id="tags" name="tags" placeholder="contoh : satu,dua,tiga">
                 </div>
-                <a href="/" type="submit" class="btn btn-light mt-3">kembali</a>
+                <a href="/" type="submit" class="btn btn-light mt-3">Kembali</a>
                 <button type="submit" class="btn btn-light mt-3">Submit</button>
             </div>
             <!-- /.card-body -->
