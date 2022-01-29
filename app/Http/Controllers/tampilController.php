@@ -25,7 +25,7 @@ class tampilController extends Controller
         $pertanyaan = Pertanyaan::where('id', '===', 1)->get();
         $user = User::where('id', '!=', Auth::user()->id)->get();
         $tags = tag::all();
-        dd($user);
+        dd($pertanyaan);
         //return view('user.index', compact('pertanyaan', 'user', 'tags'));
     }
 }
