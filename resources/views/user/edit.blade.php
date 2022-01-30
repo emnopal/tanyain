@@ -1,9 +1,9 @@
-@extends('layout.home')
+@extends('layout.homeshow')
 @section('header')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 @section('content')
-    <section class="card" style="background: #29b6f6;">
+    <section class="card" style="background: #2ace24;">
         <div class="card-header">
             <h3 class="card-title text-dark">Edit pertanyaan anda</h3>
         </div>
@@ -14,15 +14,15 @@
                      <label for="judul">Masukan judul</label>
                     <input type="text" class="form-control  @error('judul') is-invalid @enderror" name="judul" placeholder="masukan judul" id="judul" value="{{$pertanyaan->judul}}">
                 </div>
-                <div class="form-group">
-                        <label for="exampleInputPassword1">Masukan pertanyaan anda</label>
+                <div class="form-group" style="background-color: white !important;">
+                        <label for="exampleInputPassword1" style="background: #2ace24; width: 100%">Masukan pertanyaan anda</label>
                         <textarea name="isi" id="isi" class="form-control my-editor summernote">{{$pertanyaan->isi}}</textarea>
                         @error('isi')
                         <div class="invalid-feedback mt-2">{{ $message }}</div>
                         @enderror
                     </div>
                 <div class="form-group">
-                    <label for="tags">Hashtag : </label>
+                    <label for="tags">Kategori : </label>
                      @foreach ($pertanyaan->tags as $tag)
                                 <button class="btn btn-primary btn-sm">{{$tag->tag_name ? $tag->tag_name:'No tags' }}</button>
                                 @endforeach
