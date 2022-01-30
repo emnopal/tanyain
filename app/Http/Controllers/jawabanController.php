@@ -27,7 +27,6 @@ class jawabanController extends Controller
         $user = User::all();
         $pertanyaan = Pertanyaan::all();
         $profile = Profile::all();
-        // dd($profile);
         return view('admin.jawaban.index', compact('pertanyaan', 'user', 'jawaban', 'profile'));
     }
 

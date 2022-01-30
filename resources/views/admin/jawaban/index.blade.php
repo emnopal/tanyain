@@ -47,10 +47,10 @@
                         <td>{!!$jwb->pertanyaan->isi!!}</td>
                         <td>{!!$jwb->isi!!}</td>
                         <td>
-                            @foreach ($jwb->pertanyaan->tags as $tag)
-                                <button
-                                    class="btn btn-primary btn-sm">{{$tag->tag_name ? $tag->tag_name:'No tags' }}</button>
-                            @endforeach
+                            <button class="btn btn-primary btn-sm"><a href="/view_kategori/{{$jwb->pertanyaan->tag_id}}"
+                                                                      type="submit"
+                                                                      style="color: white">{{\App\Models\Tag::where('id', '=',$jwb->pertanyaan->tag_id)->first()->tag_name}}</a>
+                            </button>
                         </td>
                         <td>
                             {{-- <a href="jawaban/{{$jwb->id}}" class="btn  btn-success">SHOW</a> --}}

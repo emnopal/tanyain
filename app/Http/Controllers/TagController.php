@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 //Sweet alert
 use RealRashid\SweetAlert\Facades\Alert;
 
-class jawabanController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper\ImgToBase64;
 use App\Models\User;
 use App\Models\Profile;
-use App\Models\tag;
+use App\Models\Tag;
 use App\Models\Pertanyaan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
@@ -58,7 +58,7 @@ class PertanyaanController extends Controller
 
         $tags_id = [];
         foreach ($tags_arr as $tag_name) {
-            $tag = tag::firstOrCreate(['tag_name' => $tag_name]);
+            $tag = Tag::firstOrCreate(['tag_name' => $tag_name]);
             $tags_id[] = $tag->id;
         }
 
