@@ -61,6 +61,7 @@ Route::middleware(['auth', 'role:user,admin','web'])->group(function () {
     Route::get('/', [profileController::class, 'index']);
     Route::get('/', [tampilController::class, 'index']);
     Route::get('/kategori/{id}', [tampilController::class, 'kategori']);
+    Route::get('/kategori_pertanyaan/{id}', [tampilController::class, 'kategori_pertanyaan']);
     Route::get('/forum/create', [ForumController::class, 'create']);
     Route::get('/forum/show/{id}', [ForumController::class, 'show']);
     Route::post('/forum/store', [ForumController::class, 'store']);

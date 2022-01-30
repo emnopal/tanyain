@@ -10,8 +10,9 @@
             <form action="/profile/{{$user->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+
                 <div class="form-group">
-                    <label for="exampleInputEmail1">username</label>
+                    <label for="exampleInputEmail1">Username</label>
                     <input type="text" class="form-control  @error('username') is-invalid @enderror" name="username"
                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukan username profile"
                            value="{{$user->username}}">
@@ -51,7 +52,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1">email</label>
+                    <label for="exampleInputEmail1">Email</label>
                     <input type="text" class="form-control  @error('email') is-invalid @enderror" name="email"
                            id="exampleInputEmail1" placeholder="Masukan pertanyaan"
                            value="{{$user->email}}">
@@ -61,8 +62,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputPassword1">password baru</label>
-                    <input type="text" class="form-control  @error('password') is-invalid @enderror" name="password"
+                    <label for="exampleInputPassword1">Password Baru</label>
+                    <input type="password" class="form-control  @error('password') is-invalid @enderror" name="password"
                            id="exampleInputPassword1" placeholder="pasword baru" value="">
                     @error('password')
                     <div class="invalid-feedback mt-2">{{ $message }}</div>
@@ -72,14 +73,14 @@
                 <div class="form-group">
                     <label for="exampleInputPassword1">Foto</label>
                     <input type="file" class="form-control  @error('avatar') is-invalid @enderror" name="avatar"
-                           id="exampleInputPassword1" placeholder="masukan judul" value="">
+                           id="exampleInputPassword1" placeholder="masukan gambar" value="">
                     @error('foto')
                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="modal-footer">
                     <a href="/profile" type="button" class="btn btn-secondary">Kembali</a>
-                    <button type="submit" class="btn btn-primary">simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>

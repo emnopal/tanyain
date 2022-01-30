@@ -5,7 +5,6 @@
 @endsection
 @section('content')
     <div class="card">
-
                 <div class="card-header">
                     <h3 class="card-title">Bordered Table</h3>
                 </div>
@@ -28,7 +27,6 @@
                             <td>{{$tanya->judul}}</td>
                             <td>{!!$tanya->isi!!}</td>
                         </tr>
-
                     @endforeach
                     </tbody>
                     </table>

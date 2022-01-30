@@ -94,8 +94,6 @@ class profileController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        // dd(Crypt::decryptString($user->password));
-
         return view('admin.profile.edit', compact('user'));
     }
 
@@ -109,23 +107,39 @@ class profileController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required',
-            'bio' => 'required',
-            'alamat' => 'required',
-            'foto' => 'required'
+            'nama' => 'required'
         ]);
-        if ($request->hasFile('foto')) {
-            $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
-            Profile::where('user_id', $id)
-                ->update(['nama' => $request->nama, 'foto' => $request->file('foto')->getClientOriginalName()]);
-            // table user
-            User::where('id', $id)
-                ->update(['username' => $request->username, 'email' => $request->email, 'password' => Hash::make($request->password)]);
 
+
+        if (isset($request->avatar) || $request->avatar != null) {
+            $request->file('avatar')->move('images/', $request->file('avatar')->getClientOriginalName());
+            Profile::where('user_id', $id)
+                ->update([
+                    'nama' => $request->nama,
+                    'bio' => $request->bio,
+                    'alamat' => $request->alamat,
+                    'avatar' => $request->file('avatar')->getClientOriginalName()
+                ]);
         } else {
-            Alert::eror('gagal', 'Profile gagal di update');
-            return redirect('/profile')->with('eror', 'data anda gagal di update');
+            Profile::where('user_id', $id)
+                ->update(['nama' => $request->nama, 'bio' => $request->bio, 'alamat' => $request->alamat]);
         }
+
+        if (!isset($request->password) || $request->password != null) {
+            User::where('id', $id)
+                ->update([
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password)
+                ]);
+        } else {
+            User::where('id', $id)
+                ->update([
+                    'username' => $request->username,
+                    'email' => $request->email
+                ]);
+        }
+
         Alert::success('Berhasil', 'Profile berhasil di update');
         return redirect('/profile')->with('sukses', 'data anda berhasil di update');
     }

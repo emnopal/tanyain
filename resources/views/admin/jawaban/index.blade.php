@@ -30,7 +30,7 @@
                 <tr>
                     <th style="width: 10px">no</th>
                     <th>Nama User</th>
-                    <th>judul</th>
+                    <th>Judul</th>
                     <th>Pertanyaan</th>
                     <th>Jawaban</th>
                     <th style="width: 400px">Tags</th>

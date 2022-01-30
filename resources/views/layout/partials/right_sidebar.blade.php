@@ -6,8 +6,6 @@
         <!-- /.card-header -->
         <div class="card-body p-0">
         <ul class="products-list product-list-in-card pl-3 pr-3">
-            // TODO: Tambahin Tag Disini supaya bisa di click sama user
-            // TODO: tag yang ada di pertanyaan supaya bisa di click sama user
             @forelse ($tags as $tag)
             <li class="item mr-2" style="background: #2ace24; width: 100%; text-align:center">
                 <div class="product-info ml-0">
@@ -16,7 +14,7 @@
                       </form>
                 </div>
             </li>
-            @empty 
+            @empty
             <li>
                 <div class="product-info ml-0"> Tidak ada Kategori </div>
             </li>
