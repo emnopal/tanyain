@@ -21,7 +21,7 @@
                                 {{-- <p class="text-secondary">
                                     {!!$tanya->isi!!}
                                 </p> --}}
-        
+
                             </div>
                             <div class="text-muted small text-center align-self-center">
                                 Kategori :
