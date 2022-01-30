@@ -15,7 +15,7 @@
                     <thead>
                         <tr>
                         <th style="width: 10px">no</th>
-                        <th>Nama</th>
+                        <th>Nama Penanya</th>
                         <th>Judul</th>
                         <th>Pertanyaan</th>
                         <th>Jawaban</th>
@@ -25,7 +25,11 @@
                     @foreach ($jawaban as $usr)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$usr->user->username}}</td>
+                            {{-- @foreach ($penanya as $tanya)
+                                <td>{{$tanya->}}</td>
+                            @endforeach --}}
+                            <td>{{$usr->pertanyaan->user->username}}</td>
+                            {{-- <td>{{$usr->user->username}}</td> --}}
                             <td>{{$usr->pertanyaan->judul}}</td>
                             <td>{!!$usr->pertanyaan->isi!!}</td>
                             <td>{!!$usr->isi!!}</td>

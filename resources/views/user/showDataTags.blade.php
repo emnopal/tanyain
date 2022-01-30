@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('title')
-    <h1>DATA tags: {{$tag_name}}</h1>
+    <h1>DATA KATEGORI: {{$tag_name}}</h1>
 @endsection
 @section('content')
     <div class="card">
@@ -35,8 +35,8 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix">
-            <a href="/profile" class="float-right btn btn-default">
-                kembali
+            <a href="/kategori/{{$new_id}}" class="float-right btn btn-default">
+                Kembali Ke Kategori
             </a>
         </div>
     </div>

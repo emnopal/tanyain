@@ -85,10 +85,10 @@ class PertanyaanController extends Controller
      * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     // detail
-    public function show($id)
+    public function show(Pertanyaan $pertanyaan)
     {
-        $tanya = Pertanyaan::find($id);
-        return view('admin.pertanyaan.show', compact('tanya'));
+        // $tanya = Pertanyaan::find($id);
+        // return view('admin.pertanyaan.show', compact('tanya'));
     }
 
     /**

@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     @yield('header')
     </head>
-    <body class="hold-transition sidebar-mini">
+    <body class="hold-transition sidebar-mini layout-fixed">
     <!-- Site wrapper -->
     <div class="wrapper">
     <!-- Navbar -->
@@ -29,8 +29,8 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-blue elevation-4" style="background: #2ace24">
         <!-- Brand Logo -->
-        <a href="../../index3.html" class="brand-link">
-        <img src="../../dist/img/AdminLTELogo.png"
+        <a href="/" class="brand-link">
+        <img src="{{ asset('/dist/img/AdminLTELogo.png')}}"
             alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3"
             style="opacity: .8">
@@ -75,12 +75,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.0.5
-        </div>
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-        reserved.
+    <footer class="main-footer layout-fixed">
     </footer>
 
     <!-- Control Sidebar -->

@@ -10,7 +10,7 @@
             <li class="item mr-2" style="background: #2ace24; width: 100%; text-align:center">
                 <div class="product-info ml-0">
                       <form method="get" action="/kategori/{{$tag->id}}">
-                        <button class="btn btn-primary">{{ $tag->tag_name }}</button>
+                        <button class="btn btn-primary">{{ $tag->tag_name ? $tag->tag_name: 'Tanpa Tag' }}</button>
                       </form>
                 </div>
             </li>

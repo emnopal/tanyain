@@ -55,7 +55,7 @@
                                 <form action="profile/{{$pro->id}}" method="POST" class="d-inline">
                                     @method('delete')
                                     @csrf
-                                    <button class="submit btn badge-danger">hapus</button>
+                                    <button class="submit btn badge-danger">HAPUS</button>
                                 </form>
                             </td>
                     @else

@@ -47,12 +47,12 @@
                         </td>
                         <td>{!!$per->isi!!}</td>
                         <td>
-                            <a href="pertanyaan/{{$per->id}}" class="btn  btn-success">SHOW</a>
+                            {{-- <a href="pertanyaan/{{$per->id}}" class="btn  btn-success">SHOW</a> --}}
                             <a href="pertanyaan/{{$per->id}}/edit" class="btn  btn-primary">UPDATE</a>
                             <form action="pertanyaan/{{$per->id}}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="submit btn badge-danger">Hapus</button>
+                                <button class="submit btn badge-danger">HAPUS</button>
                             </form>
                         </td>
                         @endforeach
@@ -79,13 +79,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="Pertanyaan" method="POST">
+                    <form action="/pertanyaan" method="POST">
                         @csrf
                         <div class="form-group @error('profile') is-invalid @enderror">
                             <label for="inputGroupSelect01">nama profile</label>
                             <select name="profile" id="inputGroupSelect01" class="form-control">
                                 @foreach ($user as $prof)
-                                    <option value="{{$prof->id}}">{{$prof->profile->nama_lengkap}}</option>
+                                    <option value="{{$prof->id}}">{{$prof->profile->nama}}</option>
                                 @endforeach
                             </select>
                             @error('profile')
@@ -102,15 +102,16 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">isi</label>
-                            <textarea name="isi" class="form-control" id="isi">{!! old('isi', $isi ?? '') !!}</textarea>
+                            <textarea name="isi" id="isi" class="form-control my-editor summernote"></textarea>
+                            {{-- <textarea name="isi" class="form-control" id="isi">{!! old('isi', $isi ?? '') !!}</textarea> --}}
                             @error('isi')
                             <div class="invalid-feedback mt-2">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="tags">tags</label>
+                            <label for="tags">Tags</label>
                             <input type="text" class="form-control" id="tags" name="tags" value="{{old('tags','')}}"
-                                   placeholder="berita terkini">
+                                   placeholder="Isi Kategori">
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -122,6 +123,17 @@
         </div>
     </div>
     @include('sweetalert::alert')
+@endsection
+@section('footer')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: auto,
+                width: auto
+            });
+        });
+    </script>
 @endsection
 
 

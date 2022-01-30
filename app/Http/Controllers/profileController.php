@@ -173,6 +173,9 @@ class profileController extends Controller
         $jawaban = Jawaban::select()
             ->where('user_id', $id)
             ->get();
+        //$tanya_id = Jawaban::where('user_id', $id)->select('pertanyaan_id')->get();
+        //$penanya = Pertanyaan::find($tanya_id);
+        //dd($penanya);
 
         return view('admin.profile.showData2', compact('user', 'jawaban'));
     }

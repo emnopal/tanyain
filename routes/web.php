@@ -60,6 +60,7 @@ Route::middleware(['web','auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:user,admin','web'])->group(function () {
     Route::get('/', [profileController::class, 'index']);
     Route::get('/', [tampilController::class, 'index']);
+    Route::get('/view_kategori/{id}', [tampilController::class, 'view_kategori']);
     Route::get('/kategori/{id}', [tampilController::class, 'kategori']);
     Route::get('/kategori_pertanyaan/{id}', [tampilController::class, 'kategori_pertanyaan']);
     Route::get('/forum/create', [ForumController::class, 'create']);

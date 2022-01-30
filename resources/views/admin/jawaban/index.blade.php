@@ -33,7 +33,7 @@
                     <th>Judul</th>
                     <th>Pertanyaan</th>
                     <th>Jawaban</th>
-                    <th style="width: 400px">Tags</th>
+                    <th style="width: auto">Tags</th>
                     <th style="width: 280px">Action</th>
                 </tr>
                 </thead>
@@ -41,7 +41,8 @@
                 @foreach ($jawaban as $jwb)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$jwb->user->profile->nama_lengkap}}</td>
+                        {{-- <td>{!!$jwb->pertanyaan->user->profile->nama_lengkap!!}</td> --}}
+                        <td>{{$jwb->user->profile->nama}}</td>
                         <td>{!!$jwb->pertanyaan->judul!!}</td>
                         <td>{!!$jwb->pertanyaan->isi!!}</td>
                         <td>{!!$jwb->isi!!}</td>
@@ -52,11 +53,12 @@
                             @endforeach
                         </td>
                         <td>
+                            {{-- <a href="jawaban/{{$jwb->id}}" class="btn  btn-success">SHOW</a> --}}
                             <a href="jawaban/{{$jwb->id}}/edit" class="btn  btn-primary">UPDATE</a>
                             <form action="/hapus/{{$jwb->id}}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="submit btn badge-danger">hapus</button>
+                                <button class="submit btn badge-danger">HAPUS</button>
                             </form>
                         </td>
                     </tr>
@@ -83,13 +85,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="jawaban" method="POST">
+                    <form action="/jawaban" method="POST">
                         @csrf
                         <div class="form-group @error('profile') is-invalid @enderror">
                             <label for="inputGroupSelect01">nama profile</label>
                             <select name="profile" id="inputGroupSelect01" class="form-control">
                                 @foreach ($profile as $prof)
-                                    <option value="{{$prof->id}}">{{$prof->nama_lengkap}}</option>
+                                    <option value="{{$prof->id}}">{{$prof->nama}}</option>
                                 @endforeach
                             </select>
                             @error('profile')
@@ -109,8 +111,9 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Jawaban</label>
-                            <input type="Jawaban" class="form-control  @error('Jawaban') is-invalid @enderror"
-                                   name="Jawaban" id="exampleInputPassword1" placeholder="masukan judul">
+                            <textarea name="jawaban" id="jawaban" class="form-control my-editor summernote"></textarea>
+                            {{-- <input type="Jawaban" class="form-control  @error('Jawaban') is-invalid @enderror"
+                                   name="Jawaban" id="exampleInputPassword1" placeholder="Masukan Jawaban"> --}}
                             @error('Jawaban')
                             <div class="invalid-feedback mt-2">{{ $message }}</div>
                             @enderror
@@ -126,4 +129,15 @@
         </div>
     </div>
     @include('sweetalert::alert')
+@endsection
+@section('footer')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: auto,
+                width: auto
+            });
+        });
+    </script>
 @endsection

@@ -15,8 +15,9 @@
                 <thead>
                 <tr>
                     <th style="width: 10px">No</th>
-                    <th>Tags</th>
+                    <th class="col-4">Tags</th>
                     <th>Jumlah Pertanyaan</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -24,7 +25,16 @@
                     <td>1</td>
                     <td>{{$tag_name}}</td>
                     <td>
-                        <a href="/kategori_pertanyaan/{{$id}}">{{$tag_id->count()}}</a>
+                        <a>{{$tag_id->count()}}</a>
+                    </td>
+                    <td>
+                        <a href="/kategori_pertanyaan/{{$id}}" class="btn  btn-success">SHOW</a>
+                        <a href="#" class="btn  btn-primary">UPDATE</a>
+                        <form action="#" method="POST" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="submit btn badge-danger">HAPUS</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
@@ -32,8 +42,8 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix">
-            <a href="/profile" class="float-right btn btn-default">
-                Kembali
+            <a href="/" class="float-right btn btn-default">
+                Kembali ke Forum
             </a>
         </div>
     </div>
