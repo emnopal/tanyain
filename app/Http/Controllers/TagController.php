@@ -100,10 +100,10 @@ class jawabanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'isi' => 'required'
+            'jawaban' => 'required'
         ]);
         Jawaban::where('id', $id)
-            ->update(['isi' => ImgToBase64::convert($request->isi)]);
+            ->update(['isi' => ImgToBase64::convert($request->jawaban)]);
         Alert::success('Berhasil', 'Jawaban Berhasil di update');
         return redirect('jawaban')->with('sukses', 'data anda berhasil di update');
     }

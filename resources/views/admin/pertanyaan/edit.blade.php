@@ -4,7 +4,7 @@
     <h1>EDIT TABLE PERTANYAAN</h1>
 @endsection
 @section('header')
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 @section('content')
     <div class="card">
@@ -12,7 +12,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="/Pertanyaan/{{$tanya->id}}" method="POST">
+            <form action="/pertanyaan/{{$tanya->id}}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -34,15 +34,15 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">isi</label>
-                    <textarea name="isi" id="isi" class="form-control my-editor">{{$tanya->isi}}</textarea>
+                    <textarea name="isi" id="isi" class="form-control my-editor summernote">{{$tanya->isi}}</textarea>
                     @error('isi')
                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                     @enderror
                 </div>
         </div>
         <div class="modal-footer">
-            <a href="/Pertanyaan" type="button" class="btn btn-secondary">Kembali</a>
-            <button type="submit" class="btn btn-primary">simpan</button>
+            <a href="/pertanyaan" type="button" class="btn btn-secondary">Kembali</a>
+            <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
         </form>
     </div>
@@ -69,7 +69,7 @@
         </div>
         @endsection
         @section('footer')
-            <script>
+            {{-- <script>
                 var editor_config = {
                     path_absolute: "/",
                     selector: "textarea.my-editor",
@@ -104,5 +104,15 @@
                 };
 
                 tinymce.init(editor_config);
+            </script> --}}
+
+            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+            <script type="text/javascript">
+            $(document).ready(function () {
+                $('.summernote').summernote({
+                    height: auto,
+                    width: auto
+                });
+            });
             </script>
 @endsection
