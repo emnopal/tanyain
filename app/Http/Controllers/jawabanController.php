@@ -64,7 +64,7 @@ class jawabanController extends Controller
         $jawaban->save();
 
         Alert::success('Berhasil', 'Jawaban Berhasil di tambahkan');
-        return redirect('jawaban')->with('sukses', 'data anda berhasil di tambahkan');
+        return redirect('jawaban');
     }
 
     /**

@@ -75,7 +75,7 @@ class PertanyaanController extends Controller
         $user->pertanyaan()->save($pertanyaan);
 
         Alert::success('Berhasil', 'Pertanyaan Berhasil di tambahkan');
-        return redirect('Pertanyaan')->with('sukses', 'data anda berhasil di tambahkan');
+        return redirect('pertanyaan');
     }
 
     /**
