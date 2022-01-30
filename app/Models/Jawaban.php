@@ -27,9 +27,4 @@ class Jawaban extends Model
         return $this->hasOne(Pertanyaan::class, 'jawaban_id');
     }
 
-    public function komentar_jawaban()
-    {
-        return $this->hasMany(komentar_jawaban::class, 'jawaban_id');
-    }
-
 }

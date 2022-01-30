@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class PertanyaanTag extends Migration
+class CreatePertanyaanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class PertanyaanTag extends Migration
      */
     public function up()
     {
-        Schema::create('pertanyaan_tag', function (Blueprint $table) {
+        Schema::create('pertanyaan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pertanyaan_id');
+            $table->string('judul');
+            $table->longText('isi');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('tag_id');
-            $table->foreign('pertanyaan_id')->references('id')->on('pertanyaan')->onDelete('cascade')->onUpdate("cascade");
-            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade')->onUpdate("cascade");
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate("cascade");
+            $table->foreign('tag_id')->references('id')->on('tag')->onDelete('cascade')->onUpdate("cascade");
             $table->timestamps();
         });
     }

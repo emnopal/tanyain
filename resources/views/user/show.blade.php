@@ -33,53 +33,23 @@
                         </div>
                     </div>
                 </div>
-        @else
-
-        @endif
-        <!-- /.card-tools -->
+            @else
+            @endif
         </div>
-        <!-- /.card-header -->
+        <div class="card-header">
+            <h3>{{$pertanyaan->judul}}</h3>
+            <p>Kategori:
+                <button class="btn btn-primary btn-sm"><a href="/view_kategori/{{$pertanyaan->tag_id}}"
+                                                          type="submit"
+                                                          style="color: white">{{\App\Models\Tag::where('id', '=',$pertanyaan->tag_id)->first()->tag_name}}</a>
+                </button>
+            </p>
+        </div>
         <div class="card-body">
-            <!-- post text -->
             <p>{!!$pertanyaan->isi!!}</p>
-            <!-- Attachment -->
-            <!-- /.attachment-block -->
-
-            <!-- Social sharing buttons -->
-            {{-- <span class="float-right text-muted">{{$pertanyaan->komentar_pertanyaan->count()}} comments</span> --}}
         </div>
-        <!-- /.card-body -->
-    {{-- {awal komentar --}}
-    {{-- @foreach ($pertanyaan->komentar_pertanyaan as $komentar)
-        <div class="card-footer card-comments">
-            <div class="card-comment">
-            <!-- User image -->
-            <img class="img-circle img-sm" src="{{$komentar->user->profile->getAvatar()}}" alt="User Image">
-
-            <div class="comment-text">
-                <span class="username">
-                {{$komentar->user->profile->nama_lengkap}}
-                <span class="text-muted float-right">{{$komentar->created_at->diffForHumans()}}</span>
-                </span><!-- /.username -->
-                {{$komentar->isi}}
-            </div>
-            <!-- /.comment-text -->
-            </div>
-        </div>
-    @endforeach --}}
-    {{-- akhir komentar --}}
-    <!-- /.card-footer -->
         <div class="card-footer">
-            {{-- <form action="/forum/komentar_pertanyaan/{{$pertanyaan->id}}" method="POST">
-            @csrf
-            <img class="img-fluid img-circle img-sm" src="{{auth()->user()->profile->getAvatar()}}" alt="Alt Text">
-            <!-- .img-push is used to add margin to elements next to floating images -->
-            <div class="img-push">
-                <input type="text" name="komentar" class="form-control form-control-sm" placeholder="Press enter to post comment">
-            </div>
-            </form> --}}
         </div>
-        <!-- /.card-footer -->
     </div>
 
     <h5 class="mb-2 ml-2" style="font-weight: bold">Jawaban</h5>
@@ -169,7 +139,7 @@
                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">jawab</button>
+                <button type="submit" class="btn btn-primary">Jawab</button>
             </form>
         </div>
     </div>

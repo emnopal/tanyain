@@ -147,5 +147,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="summernote" level="application" />
+    <orderEntry type="library" name="ionicons" level="application" />
   </component>
 </module>

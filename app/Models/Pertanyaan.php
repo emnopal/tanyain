@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pertanyaan extends Model
 {
     protected $table = 'pertanyaan';
-    protected $fillable = ['judul', 'isi', 'jawaban_id', 'user_id', 'tag_id'];
+    protected $fillable = ['judul', 'isi', 'user_id', 'tag_id'];
     use HasFactory;
 
-    // relasi ke profile
     public function profile()
     {
         return $this->belongsTo(Profile::class);
@@ -27,11 +26,6 @@ class Pertanyaan extends Model
         return $this->hasMany(Jawaban::class, 'pertanyaan_id');
     }
 
-    public function komentar_pertanyaan()
-    {
-        return $this->hasMany(komentar_pertanyaan::class, 'pertanyaan_id');
-    }
-
     public function tepat()
     {
         return $this->hasOne(Jawaban::class, 'id', 'jawaban_id');
@@ -39,7 +33,7 @@ class Pertanyaan extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(tag::class, 'pertanyaan_tag', 'pertanyaan_id', 'tag_id');
+        return $this->belongsTo(Tag::class, 'tag_id', 'id');
     }
 
 }
