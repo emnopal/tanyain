@@ -65,6 +65,8 @@
                                 <td>{{$pro->username}}</td>
                                 <td>{{$pro->profile->nama}}</td>
                                 <td>{{$pro->email}}</td>
+                                <td>{{$pro->profile->bio}}</td>
+                                <td>{{$pro->profile->alamat}}</td>
                                 <td>{{$pro->role}}</td>
                                 <td>
                                     <a href="profile/{{$pro->id}}" class="btn  btn-success">SHOW</a>
