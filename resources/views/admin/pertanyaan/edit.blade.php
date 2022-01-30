@@ -71,8 +71,7 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('.summernote').summernote({
-                        height: auto,
-                        width: auto
+                        height: 170
                     });
                 });
             </script>
