@@ -18,12 +18,12 @@
                                 {{-- <p class="text-secondary">
                                     {!!$tanya->isi!!}
                                 </p> --}}
-        
+
                             </div>
                             <div class="text-muted small text-center align-self-center">
                                 Kategori :
                                 @foreach ($tanya->tags as $tag)
-                                <button class="btn btn-primary btn-sm">{{$tag->tag_name ? $tag->tag_name:'No tags' }}</button>
+                                    <a href="/kategori/{{$tag->id}}" class="btn btn-primary btn-sm">{{$tag->tag_name ? $tag->tag_name:'No tags' }}</a>
                                 @endforeach
                                 <span><i class="far fa-comment ml-2"></i> {{$tanya->jawaban->count()}}</span>
                                 <p class="text-muted mt-2" style="text-align: right; font-size:10px">Dibuat pada <span class="text-secondary font-weight-bold" style="text-align: right; font-size:10px">{{$tanya->created_at->diffForHumans()}}</span></p>
