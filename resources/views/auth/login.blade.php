@@ -3,7 +3,7 @@
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
         <div class="container px-4">
         <a class="navbar-brand" href="/">
-            <img src="{{asset('Argon/assets/img/brand/white.png')}}" />
+            <img src="{{ secure_asset('Argon/assets/img/brand/white.png')}}" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -61,12 +61,12 @@
                         </div>
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
-                        <div class="signin-content" style="text-align: center">            
+                        <div class="signin-content" style="text-align: center">
                             <div class="signin-form">
                                 <h2 class="form-title">Login </h2>
                                 <form method="POST" action="/postlogin" class="register-form" id="login-form">
                                     @csrf
-            
+
                                     <div class="form-group">
                                         <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                         <input type="text" name="email" id="email" placeholder="Email" value="{{old('email')}}">
@@ -74,7 +74,7 @@
                                     @error('email')
                                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                                     @enderror
-            
+
                                     <div class="form-group">
                                         <label for="password"><i class="zmdi zmdi-lock"></i></label>
                                         <input type="password" name="password" id="password" placeholder="Password"/>
@@ -82,7 +82,7 @@
                                     @error('password')
                                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                                     @enderror
-            
+
                                     @if (session('status'))
                                         <div class="alert alert-danger">
                                             {{ session('status') }}

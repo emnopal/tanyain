@@ -4,7 +4,7 @@
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
         <div class="container px-4">
         <a class="navbar-brand" href="/">
-            <img src="{{asset('Argon/assets/img/brand/white.png')}}" />
+            <img src="{{ secure_asset('Argon/assets/img/brand/white.png')}}" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -68,7 +68,7 @@
                                 <form method="POST" action="/postregister" class="register-form" id="register-form">
                                     @csrf
                                     <input type="hidden" class="hidden" value="user" name="role">
-                
+
                                     <div class="form-group">
                                         <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                         <input type="text" name="username" id="username" placeholder="Username"
@@ -77,7 +77,7 @@
                                     @error('username')
                                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                                     @enderror
-                
+
                                     <div class="form-group">
                                         <label for="nama"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                         <input type="text" name="nama" id="nama" placeholder="Nama"
@@ -86,7 +86,7 @@
                                     @error('nama')
                                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                                     @enderror
-                
+
                                     <div class="form-group">
                                         <label for="email"><i class="zmdi zmdi-email"></i></label>
                                         <input type="email" name="email" id="email" placeholder="Email"
@@ -95,7 +95,7 @@
                                     @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                
+
                                     <div class="form-group">
                                         <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                                         <input type="password" name="password" id="pass" placeholder="Password"/>
@@ -108,7 +108,7 @@
                                             {{ session('status') }}
                                         </div>
                                     @endif
-                
+
                                     <div class="form-group">
                                         <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
                                         <input type="password" name="password2" id="re_pass" placeholder="Repeat your password"/>
@@ -118,7 +118,7 @@
                                         <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all
                                             statements in <a href="#" class="term-service">Terms of service</a></label>
                                     </div>
-                
+
                                     @if (session('status1'))
                                         <div class="alert alert-danger">
                                             {{ session('status1') }}

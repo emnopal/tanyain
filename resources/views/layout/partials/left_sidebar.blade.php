@@ -1,7 +1,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: #e9ecef; background: ">
         <!-- Brand Logo -->
         <a href="/" class="brand-link">
-        <img src="{{ asset('user/images/AdminLTELogo.png') }}"
+        <img src="{{ secure_asset('user/images/AdminLTELogo.png') }}"
             class="brand-image mt-1 ml-4 mr-3"
             style="opacity: .8">
         <span class="brand-text font-weight-bold text-dark">Tanya.!n</span>

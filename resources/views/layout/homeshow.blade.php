@@ -7,15 +7,15 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('user/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('user/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('user/css/adminlte.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('user/css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('user/css/main.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('user/css/adminlte.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ secure_asset('user/css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ secure_asset('user/css/main.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   @yield('header')
@@ -57,15 +57,15 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{ asset('user/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ secure_asset('user/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('user/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ secure_asset('user/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- overlayScrollbars -->
-<script src="{{ asset('user/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<script src="{{ secure_asset('user/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('user/js/adminlte.min.js') }}"></script>
+<script src="{{ secure_asset('user/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('user/js/demo.js') }}"></script>
+<script src="{{ secure_asset('user/js/demo.js') }}"></script>
 @include('sweetalert::alert')
 @yield('footer')
 </body>

@@ -10,11 +10,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {{-- cara memakai asset --}}
-    <link rel="stylesheet" href="{{asset('/plugins/plugins/fontawesome-free/css/all.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('/plugins/plugins/fontawesome-free/css/all.css')}}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{asset('/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('/dist/css/adminlte.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     @yield('header')
@@ -30,7 +30,7 @@
     <aside class="main-sidebar sidebar-light-blue elevation-4" style="background: #8965e0">
         <!-- Brand Logo -->
         <a href="/" class="brand-link">
-            <img src="{{ asset('/dist/img/AdminLTELogo.png')}}"
+            <img src="{{ secure_asset('/dist/img/AdminLTELogo.png')}}"
                  alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
@@ -79,13 +79,13 @@
 
 <!-- jQuery -->
 
-<script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ secure_asset('/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ secure_asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ secure_asset('/dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('/dist/js/demo.js') }}"></script>
+<script src="{{ secure_asset('/dist/js/demo.js') }}"></script>
 @yield('footer');
 </body>
 </html>
