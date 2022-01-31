@@ -13,14 +13,15 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('user/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('user/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('user/css/adminlte.min.css') }}"> --}}
   <link rel="stylesheet" type="text/css" href="{{ asset('user/css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('user/css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('user/css/main.css') }}"> --}}
+  {{-- <link href="{{ asset('Argon/assets/css/argon-dashboard.css?v=1.1.2')}}" rel="stylesheet" /> --}}
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   @yield('header')
 </head>
-<body class="hold-transition sidebar-mini layout-fixed" style="background:#e8eaf6; ">
+<body class="hold-transition sidebar-mini layout-fixed" style="background:#8965e0; ">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -31,7 +32,7 @@
   @include('layout.partials.left_sidebar')
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"  style="background:#e8eaf6; ">
+  <div class="content-wrapper"  style="background:#8965e0; ">
     <div class="row mr-0 pl-3">
       <!-- Main content -->
       <div class="col-md-8 mt-5 pt-4">
@@ -66,6 +67,9 @@
 <script src="{{ asset('user/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('user/js/demo.js') }}"></script>
+<!--   Argon JS   -->
+{{-- <script src="{{ asset('Argon/assets/js/argon-dashboard.min.js?v=1.1.2')}}"></script> --}}
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 @include('sweetalert::alert')
 @yield('footer')
 </body>

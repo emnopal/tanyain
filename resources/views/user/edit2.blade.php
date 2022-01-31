@@ -3,7 +3,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 @section('content')
-    <section class="card" style="background: #8898aa;">
+    <section class="card" style="background: #e9ecef;">
         <div class="card-header">
             <h3 class="card-title text-dark">Edit jawaban anda</h3>
         </div>
@@ -19,7 +19,7 @@
                     <input type="text" class="form-control  @error('judul') is-invalid @enderror" name="judul" placeholder="masukan judul" id="judul" value="{{$jawaban->pertanyaan->judul}}" readonly>
                 </div>
                 <div class="form-group" style="background-color: white !important;">
-                        <label for="exampleInputPassword1" style="background: #8898aa; width: 100%">Masukan jawaban anda</label>
+                        <label for="exampleInputPassword1" style="background: #e9ecef; width: 100%">Masukan jawaban anda</label>
                         <textarea name="isi" id="isi" class="form-control my-editor summernote" >{!!$jawaban->isi!!}</textarea>
                         @error('isi')
                         <div class="invalid-feedback mt-2">{{ $message }}</div>
