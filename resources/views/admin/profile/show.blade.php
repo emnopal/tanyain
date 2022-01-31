@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('title')
-    <h1>DATA TABLE PERTANYAAN</h1>
+    <h1>DATA TABLE PROFILE</h1>
 @endsection
 @section('content')
     <div class="card">

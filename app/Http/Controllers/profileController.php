@@ -45,32 +45,44 @@ class profileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'username' => 'required',
             'nama' => 'required',
-            'bio' => 'required',
-            'alamat' => 'required',
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
-        $profile = new Profile;
+        // $profile = new Profile;
 
-        $user = new User;
-        $user->role = 'user';
-        $user->username = $request->username; // mengambil dari requst name="nama
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->remember_token = Str::random(60);
-        $user->save();
+            $user = new User;
+            $user->role = 'user';
+            $user->username = $request->username; // mengambil dari requst name="nama
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->remember_token = Str::random(60);
+            $user->save();
+
+            $request->request->add(['user_id' => $user->id, 'nama' => $request->nama]);
+            Profile::create($request->all());
+
+        // $user = new User;
+        // $user->role = 'user';
+        // $user->username = $request->username; // mengambil dari requst name="nama
+        // $user->email = $request->email;
+        // $user->password = Hash::make($request->password);
+        // $user->remember_token = Str::random(60);
+        // $user->save();
 
         // avatar
         // untuk mengambil id dari user id
 
-        $request->request->add(['user_id' => $user->id]);
-        $profile = Profile::create($request->all());
-        if ($request->hasFile('foto')) {
-            $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
-            $profile->foto = $request->file('foto')->getClientOriginalName();
-            $profile->save();
-        }
+        // $request->request->add(['user_id' => $user->id]);
+        // $profile = Profile::create($request->all());
+        // if ($request->hasFile('foto')) {
+        //     $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
+        //     $profile->foto = $request->file('foto')->getClientOriginalName();
+        //     $profile->save();
+        // }
         Alert::success('Berhasil', 'Profile & user Berhasil di tambahkan');
-        return redirect('/profile')->with('sukses', 'data anda berhasil di tambahkan');
+        return redirect('/profile');
     }
 
     /**
@@ -133,15 +145,37 @@ class profileController extends Controller
                     'password' => Hash::make($request->password)
                 ]);
         } else {
+            $request->password = User::where('id',$id)->select('password')->first();
             User::where('id', $id)
                 ->update([
                     'username' => $request->username,
-                    'email' => $request->email
+                    'email' => $request->email,
+                    'password' => $request->password
+                ]);
+        }
+        // if ($request->role === "") {
+        //     $request->role = null;
+        // }
+        
+        if (!isset($request->role) || $request->role != null) {
+            User::where('id', $id)
+                ->update([
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'role' => $request->role
+                ]);
+        } else {
+            $request->role = User::where('id',$id)->select('role')->first();
+            User::where('id', $id)
+                ->update([
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'role' => $request->role
                 ]);
         }
 
         Alert::success('Berhasil', 'Profile berhasil di update');
-        return redirect('/profile')->with('sukses', 'data anda berhasil di update');
+        return redirect('/profile');
     }
 
     /**

@@ -74,7 +74,7 @@
                                     <form action="profile/{{$pro->id}}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
-                                        <button class="submit btn badge-danger">hapus</button>
+                                        <button class="submit btn badge-danger">HAPUS</button>
                                     </form>
                                 </td>
                                 @endif
@@ -103,63 +103,46 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="profile" method="POST" enctype="multipart/form-data">
+                    <form action="/profile" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="exampleInputEmail1">username</label>
+                            <label for="exampleInputEmail1">Username</label>
                             <input type="text" class="form-control  @error('username') is-invalid @enderror"
                                    name="username" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                   placeholder="Masukan nama profile">
+                                   placeholder="Masukan Username">
                             @error('username')
                             <div class="invalid-feedback mt-2">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">nama profile</label>
-                            <input type="text" class="form-control  @error('nama_lengkap') is-invalid @enderror"
-                                   name="nama_lengkap" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            <label for="exampleInputEmail1">Nama Profile</label>
+                            <input type="text" class="form-control  @error('nama') is-invalid @enderror"
+                                   name="nama" id="exampleInputEmail1" 
                                    placeholder="Masukan nama profile">
-                            @error('nama_lengkap')
+                            @error('nama')
                             <div class="invalid-feedback mt-2">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Telephone number</label>
-                            <input type="number" class="form-control  @error('phone') is-invalid @enderror" name="phone"
-                                   id="exampleInputEmail1" aria-describedby="emailHelp"
-                                   placeholder="Masukan nama profile">
-                            @error('phone')
-                            <div class="invalid-feedback mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">email</label>
+                            <label for="exampleInputPassword1">Email</label>
                             <input type="text" class="form-control  @error('email') is-invalid @enderror" name="email"
-                                   id="exampleInputPassword1" placeholder="Masukan pertanyaan">
+                                   id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Masukan Email">
                             @error('email')
                             <div class="invalid-feedback mt-2">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">password</label>
-                            <input type="text" class="form-control  @error('password') is-invalid @enderror"
-                                   name="password" id="exampleInputPassword1" placeholder="masukan judul">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control zmdi zmdi-lock @error('password') is-invalid @enderror"
+                                   name="password" id="exampleInputPassword1" placeholder="Masukan Password">
                             @error('password')
-                            <div class="invalid-feedback mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Foto</label>
-                            <input type="file" class="form-control  @error('foto') is-invalid @enderror" name="foto"
-                                   id="exampleInputPassword1" placeholder="masukan judul">
-                            @error('foto')
                             <div class="invalid-feedback mt-2">{{ $message }}</div>
                             @enderror
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">back</button>
-                    <button type="submit" class="btn btn-primary">simpan</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
                 </form>
             </div>

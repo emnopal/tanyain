@@ -61,6 +61,22 @@
                     @enderror
                 </div>
 
+                @if (Auth::user()->role==='admin')
+                <div class="form-group @error('role') is-invalid @enderror">
+                    <label for="inputGroupSelect01">Role</label>
+                    <select name="role" id="inputGroupSelect01" class="form-control">
+                            <option value="{{$user->role}}"></option>
+                            <option value="admin">admin</option>
+                            <option value="user">user</option>
+                    </select>
+                    @error('role')
+                    <div class="invalid-feedback mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+                @else
+                    <input type="hidden" name="role" value="{{$user->role}}">
+                @endif
+
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password Baru</label>
                     <input type="password" class="form-control  @error('password') is-invalid @enderror" name="password"
