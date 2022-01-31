@@ -21,20 +21,12 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Test PDF Wrapper
 // Route::get('/test_domPDF', function(){
 //     $pdf = App::make('dompdf.wrapper');
 //     $pdf->loadHTML('<h1>Test</h1>');
 //     return $pdf->stream();
 // });
-
-// Route::get('/', [AuthController::class, 'home']);
-// Login
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/postlogin', [AuthController::class, 'postlogin']);
-Route::get('/register', [AuthController::class, 'register']);
-Route::post('/postregister', [AuthController::class, 'postregister']);
-Route::get('/logout', [AuthController::class, 'logout']);
 
 // untuk user
 // Route::middleware(['auth', 'role:users'])->group(function(){
@@ -42,11 +34,20 @@ Route::get('/logout', [AuthController::class, 'logout']);
 //     Route::get('/forum/create', [ForumController::class, 'create']);
 // });
 
+
+// Route::get('/', [AuthController::class, 'home']);
+// Login dan autentikasi
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/postlogin', [AuthController::class, 'postlogin']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/postregister', [AuthController::class, 'postregister']);
+Route::get('/logout', [AuthController::class, 'logout']);
+
+
 //middleware untuk role admin
 Route::middleware(['web','auth', 'role:admin'])->group(function () {
     // table pertanyaan
     Route::resource('pertanyaan', PertanyaanController::class)->except('show');
-    // Route::delete('/hapus/{hapus}', [TagController::class, 'Destroy']);
     Route::resource('jawaban', jawabanController::class)->except('show');
     Route::resource('kategori', TagController::class)->except('show');
 
@@ -58,7 +59,7 @@ Route::middleware(['web','auth', 'role:admin'])->group(function () {
     Route::get('/ExcelJawaban', [exportController::class, 'ExcelJawaban']);
 });
 
-// untuk user
+//middleware untuk role user/admin
 Route::middleware(['auth', 'role:user,admin','web'])->group(function () {
     Route::get('/', [profileController::class, 'index']);
     Route::get('/', [tampilController::class, 'index']);
@@ -69,16 +70,12 @@ Route::middleware(['auth', 'role:user,admin','web'])->group(function () {
     Route::get('/forum/show/{id}', [ForumController::class, 'show']);
     Route::post('/forum/store', [ForumController::class, 'store']);
     Route::post('/forum/jawaban/{id}', [ForumController::class, 'jawab']);
-    Route::post('/forum/komentar_pertanyaan/{id}', [ForumController::class, 'komentar_pertanyaan']);
-    Route::post('/forum/komentar_jawaban/{id}', [ForumController::class, 'komentar_jawaban']);
     Route::get('/forum/edit/{id}', [ForumController::class, 'edit']); // edit
     Route::get('/forum/edit2/{id}', [ForumController::class, 'edit2']);
     Route::post('/forum/update/{id}', [ForumController::class, 'update']); // update
     Route::patch('/forum/update/{id}', [ForumController::class, 'update2']);
     Route::post('/forum/hapus/{id}', [ForumController::class, 'destroy']); // delete
     Route::delete('/forum/hapus/{id}', [ForumController::class, 'destroy2']);
-    Route::get('/following/{id}', [ForumController::class, 'follower']);
-    Route::get('/unfollow/{id}', [ForumController::class, 'unfollow']);
     Route::resource('profile', profileController::class);
     Route::get('/pertanyaan/{show}', [profileController::class, 'ShowPertanyaan']); // show admin untuk pertanyaan user
     Route::get('/jawaban/{show}', [profileController::class, 'ShowJawaban']); // show admin untuk jawaban user

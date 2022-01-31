@@ -90,41 +90,7 @@
             <div class="card-body">
                 <!-- post text -->
                 <p>{!!$jwb->isi!!}</p>
-                <!-- Social sharing buttons -->
-                {{-- <span class="float-right text-muted">{{$jwb->komentar_jawaban->count()}} comments</span> --}}
             </div>
-            <!-- /.card-body -->
-        {{-- awal komentar --}}
-        {{-- @foreach ($jwb->komentar_jawaban as $komentar)
-            <div class="card-footer card-comments">
-                <div class="card-comment">
-                <!-- User image -->
-                <img class="img-circle img-sm" src="{{$komentar->user->profile->getAvatar()}}" alt="User Image">
-                <div class="comment-text">
-                    <span class="username">
-                    {{$komentar->user->profile->nama_lengkap}}
-                    <span class="text-muted float-right">{{$komentar->created_at->diffForHumans()}}</span>
-                    </span><!-- /.username -->
-                    {{$komentar->isi}}
-                </div>
-                <!-- /.comment-text -->
-                </div>
-            </div>
-        @endforeach --}}
-        {{-- akhir komentar --}}
-        <!-- /.card-footer -->
-        {{-- <div class="card-footer">
-            <form action="/forum/komentar_jawaban/{{$jwb->id}}" method="POST"> --}}
-        {{-- <input type="text" name="id" value="{{$pertanyaan->id}}" hidden> --}}
-        {{-- @csrf
-        <img class="img-fluid img-circle img-sm" src="{{auth()->user()->profile->getAvatar()}}" alt="Alt Text">
-        <!-- .img-push is used to add margin to elements next to floating images -->
-        <div class="img-push">
-            <input type="text" name="komentar" class="form-control form-control-sm" placeholder="Press enter to post comment">
-        </div>
-        </form>
-    </div> --}}
-        <!-- /.card-footer -->
         </div>
     @endforeach
     <?php $if_same_id = App\Models\Pertanyaan::where('user_id', '=', $pertanyaan->user->id)->first() ?>

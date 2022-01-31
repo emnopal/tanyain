@@ -47,22 +47,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $profile_id = Profile::select()
-            ->where('id', $request->profile)
-            ->get();
-        $profile = 0;
-        foreach ($profile_id as $prof) {
-            $profile += $prof->user_id;
-        }
 
-        $jawaban = new Jawaban;
-        $jawaban->isi = ImgToBase64::convert($request->jawaban);
-        $jawaban->pertanyaan_id = $request->pertanyaan;
-        $jawaban->user_id = $profile;
-        $jawaban->save();
-
-        Alert::success('Berhasil', 'Jawaban Berhasil di tambahkan');
-        return redirect('jawaban')->with('sukses', 'data anda berhasil di tambahkan');
     }
 
     /**
