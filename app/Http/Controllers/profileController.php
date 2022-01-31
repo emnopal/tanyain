@@ -137,20 +137,19 @@ class profileController extends Controller
                 ->update(['nama' => $request->nama, 'bio' => $request->bio, 'alamat' => $request->alamat]);
         }
 
-        if (!isset($request->password) || $request->password != null) {
+        if (!isset($request->password) && (trim($request->password) == "")) {
+            User::where('id', $id)
+                ->update([
+                    'username' => $request->username,
+                    'email' => $request->email,
+                ]);
+        } else {
+            // $request->password = User::where('id',$id)->select('password')->first();
             User::where('id', $id)
                 ->update([
                     'username' => $request->username,
                     'email' => $request->email,
                     'password' => Hash::make($request->password)
-                ]);
-        } else {
-            $request->password = User::where('id',$id)->select('password')->first();
-            User::where('id', $id)
-                ->update([
-                    'username' => $request->username,
-                    'email' => $request->email,
-                    'password' => $request->password
                 ]);
         }
         // if ($request->role === "") {

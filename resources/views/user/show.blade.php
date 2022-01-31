@@ -36,15 +36,15 @@
             @else
             @endif
         </div>
-        {{-- <div class="card-header">
-            <h3>{{$pertanyaan->judul}}</h3>
-            <p>Kategori:
+        <div class="card-header">
+            <a class="text-muted">Title: <h6 class="text-primary">{{$pertanyaan->judul}}</h6></a>
+            {{-- <p>Kategori:
                 <button class="btn btn-primary btn-sm"><a href="/view_kategori/{{$pertanyaan->tag_id}}"
                                                           type="submit"
                                                           style="color: white">{{\App\Models\Tag::where('id', '=',$pertanyaan->tag_id)->first()->tag_name}}</a>
                 </button>
-            </p>
-        </div> --}}
+            </p> --}}
+        </div>
         <div class="card-body">
             <p>{!!$pertanyaan->isi!!}</p>
         </div>
@@ -127,7 +127,8 @@
         <!-- /.card-footer -->
         </div>
     @endforeach
-
+    <?php $if_same_id = App\Models\Pertanyaan::where('user_id', '=', $pertanyaan->user->id)->first() ?>
+    @if ($if_same_id->user_id != Auth::user()->id)
     <div class="card card-widget">
         <div class="card-header">
             <form action="/forum/jawaban/{{$pertanyaan->id}}" method="POST">
@@ -143,6 +144,13 @@
             </form>
         </div>
     </div>
+    @else
+    <div class="card card-widget">
+        <div class="card-header">
+            <h5 class="text-danger" style="text-align: center">Tidak bisa menjawab pertanyaan sendiri !</h5>
+        </div>
+    </div>
+    @endif
     @include('sweetalert::alert')
 @endsection
 @section('footer')
