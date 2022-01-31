@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PertanyaanController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\jawabanController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\exportController;
 use App\Http\Controllers\tampilController;
@@ -45,8 +46,9 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::middleware(['web','auth', 'role:admin'])->group(function () {
     // table pertanyaan
     Route::resource('pertanyaan', PertanyaanController::class)->except('show');
-    Route::delete('/hapus/{hapus}', [TagController::class, 'Destroy']);
-    Route::resource('jawaban', TagController::class)->except('show');
+    // Route::delete('/hapus/{hapus}', [TagController::class, 'Destroy']);
+    Route::resource('jawaban', jawabanController::class)->except('show');
+    Route::resource('kategori', TagController::class)->except('show');
 
     // Export pdf pertanyaan & jawban
     Route::get('/exportPertanyaan', [exportController::class, 'PDFPertanyaan']);

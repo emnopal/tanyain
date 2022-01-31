@@ -36,7 +36,7 @@
             @else
             @endif
         </div>
-        <div class="card-header">
+        {{-- <div class="card-header">
             <h3>{{$pertanyaan->judul}}</h3>
             <p>Kategori:
                 <button class="btn btn-primary btn-sm"><a href="/view_kategori/{{$pertanyaan->tag_id}}"
@@ -44,7 +44,7 @@
                                                           style="color: white">{{\App\Models\Tag::where('id', '=',$pertanyaan->tag_id)->first()->tag_name}}</a>
                 </button>
             </p>
-        </div>
+        </div> --}}
         <div class="card-body">
             <p>{!!$pertanyaan->isi!!}</p>
         </div>
@@ -143,6 +143,7 @@
             </form>
         </div>
     </div>
+    @include('sweetalert::alert')
 @endsection
 @section('footer')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>

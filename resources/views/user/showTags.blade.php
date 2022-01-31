@@ -7,7 +7,7 @@
     <div class="card">
 
         <div class="card-header">
-            <h3 class="card-title">Bordered Table</h3>
+            {{-- <h3 class="card-title">Bordered Table</h3> --}}
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -29,7 +29,7 @@
                     </td>
                     <td>
                         <a href="/kategori_pertanyaan/{{$id}}" class="btn  btn-success">SHOW</a>
-                        <a href="#" class="btn  btn-primary">UPDATE</a>
+                        <a href="/kategori/{{$id}}/edit" class="btn  btn-primary">UPDATE</a>
                         <form action="#" method="POST" class="d-inline">
                             @method('delete')
                             @csrf

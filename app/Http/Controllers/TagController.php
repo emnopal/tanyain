@@ -6,9 +6,11 @@ use App\Helper\ImgToBase64;
 use App\Models\Profile;
 use App\Models\Pertanyaan;
 use App\Models\Jawaban;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
+use DB;
 
 //Sweet alert
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,15 +22,11 @@ class TagController extends Controller
      *
      * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $jawaban = Jawaban::paginate(5);
-
-        $user = User::all();
-        $pertanyaan = Pertanyaan::all();
-        $profile = Profile::all();
-        // dd($profile);
-        return view('admin.jawaban.index', compact('pertanyaan', 'user', 'jawaban', 'profile'));
+        $tag_id = DB::table('pertanyaan')->where('tag_id', '=', $id)->select('id')->get();
+        $tag_name = Tag::where('id', '=', $id)->first()->tag_name;
+        return view('user.showTags', compact('tag_name', 'tag_id', 'id'));
     }
 
     /**
@@ -86,8 +84,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $jawab = Jawaban::find($id);
-        return view('admin.jawaban.edit', compact('jawab'));
+        $tag = Tag::find($id);
+        return view('admin.kategori.edit', compact('tag'));
     }
 
     /**
@@ -100,12 +98,12 @@ class TagController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'jawaban' => 'required'
+            'isi' => 'required'
         ]);
-        Jawaban::where('id', $id)
-            ->update(['isi' => ImgToBase64::convert($request->jawaban)]);
-        Alert::success('Berhasil', 'Jawaban Berhasil di update');
-        return redirect('jawaban')->with('sukses', 'data anda berhasil di update');
+        Tag::where('id', $id)
+            ->update(['tag_name' => ($request->isi)]);
+        Alert::success('Berhasil', 'kategori Berhasil di update');
+        return redirect('/');
     }
 
     /**
@@ -114,10 +112,10 @@ class TagController extends Controller
      * @param \App\Models\Jawaban $jawaban
      * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function destroy(Jawaban $jawaban, $id)
+    public function destroy(Tag $tag, $id)
     {
-        Jawaban::where('id', $id)->delete();
-        Alert::success('Berhasil', 'Jawaban Berhasil di hapus');
-        return redirect('jawaban')->with('eror', 'data anda berhasil di hapus');
+        Tag::where('id', $id)->delete();
+        Alert::success('Berhasil', 'Kategori Berhasil di hapus');
+        return redirect('/');
     }
 }

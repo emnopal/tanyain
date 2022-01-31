@@ -34,6 +34,7 @@
                     <th>Nama User</th>
                     <th>judul</th>
                     <th>Pertanyaan</th>
+                    <th style="width: auto">Tags</th>
                     <th style="width: 280px">Action</th>
                 </tr>
                 </thead>
@@ -42,10 +43,14 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$per->user->profile->nama}}</td>
-                        <td>
-                            {{$per->judul}}
-                        </td>
+                        <td>{{$per->judul}}</td>
                         <td>{!!$per->isi!!}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm"><a href="/view_kategori/{{$per->tag_id}}"
+                                type="submit"
+                                style="color: white">{{\App\Models\Tag::where('id', '=',$per->tag_id)->first()->tag_name}}</a>
+                            </button>
+                        </td>
                         <td>
                             {{-- <a href="pertanyaan/{{$per->id}}" class="btn  btn-success">SHOW</a> --}}
                             <a href="pertanyaan/{{$per->id}}/edit" class="btn  btn-primary">UPDATE</a>

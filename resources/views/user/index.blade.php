@@ -5,7 +5,7 @@
             <p style="text-align: left; font-size:30px; margin-top:10px">Forum QnA<br>
                 @isset ($tag_name)
                     <a class="text-primary mt-2" style="text-align: right; font-size:20px">Kategori : <span
-                            class="text-secondary font-weight-bold"
+                            class="btn btn-primary btn-sm"
                             style="text-align: right; font-size:20px">{{ $tag_name }}</span></a>
                 @endisset
                 {{-- <a href="/forum/create" type="submit" class="btn btn-primary text-white btn-md text-dark" style="border-radius:50px; margin-bottom:25px" >Yuk Tanya</a> --}}

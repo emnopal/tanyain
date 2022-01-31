@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Isi</label>
-                    <textarea name="isi" id="isi" class="form-control my-editor summernote">{{$tanya->isi}}</textarea>
+                    <textarea name="isi" id="isi" class="form-control my-editor summernote @error('isi') is-invalid @enderror">{{$tanya->isi}}</textarea>
                     @error('isi')
                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                     @enderror

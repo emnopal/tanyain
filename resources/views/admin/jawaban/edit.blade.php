@@ -11,14 +11,12 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <button class="btn  btn-primary" data-toggle="modal" data-target="#exampleModal">Tambah Data [+]</button>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <form action="/jawaban/{{$jawab->id}}" method="POST">
                 @csrf
                 @method('PUT')
-
                 <div class="form-group">
                     <label for="exampleInputEmail1">Username</label>
                     <input type="text" class="form-control  @error('profile') is-invalid @enderror" name="profile"
@@ -41,13 +39,11 @@
 
                 <div class="form-group">
                     <label for="exampleInputPassword1">Jawaban</label>
-                    <textarea name="isi" id="isi" class="form-control my-editor summernote">{{$jawab->isi}}</textarea>
-                    @error('jawaban')
+                    <textarea name="isi" id="isi" class="form-control my-editor summernote @error('isi') is-invalid @enderror">{{$jawab->isi}}</textarea>
+                    @error('isi')
                     <div class="invalid-feedback mt-2">{{ $message }}</div>
                     @enderror
-
                 </div>
-
                 <div class="modal-footer">
                     <a href="/jawaban" type="button" class="btn btn-secondary">Kembali</a>
                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -58,7 +54,7 @@
         <div class="card-footer clearfix">
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -68,10 +64,9 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                    </div>
+                    <div class="modal-body"></div>
                 </div>
-            </div>
+            </div> --}}
             @endsection
             @section('footer')
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>

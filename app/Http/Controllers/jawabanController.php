@@ -104,7 +104,7 @@ class jawabanController extends Controller
         Jawaban::where('id', $id)
             ->update(['isi' => ImgToBase64::convert($request->isi)]);
         Alert::success('Berhasil', 'Jawaban Berhasil di update');
-        return redirect('jawaban')->with('sukses', 'data anda berhasil di update');
+        return redirect('jawaban');//->with('sukses', 'data anda berhasil di update');
     }
 
     /**
@@ -117,6 +117,6 @@ class jawabanController extends Controller
     {
         Jawaban::where('id', $id)->delete();
         Alert::success('Berhasil', 'Jawaban Berhasil di hapus');
-        return redirect('jawaban')->with('eror', 'data anda berhasil di hapus');
+        return redirect('jawaban');//->with('eror', 'data anda berhasil di hapus');
     }
 }

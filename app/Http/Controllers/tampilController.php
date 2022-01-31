@@ -33,17 +33,20 @@ class tampilController extends Controller
 
     public function kategori($id)
     {
-        $tag_id = DB::table('pertanyaan_tag')->where('tag_id', '=', $id)->select('pertanyaan_id')->get();
+        $tag_id = DB::table('pertanyaan')->where('tag_id', '=', $id)->select('id')->get();
         $tag_name = Tag::where('id', '=', $id)->first()->tag_name;
         return view('user.showTags', compact('tag_name', 'tag_id', 'id'));
     }
 
     public function kategori_pertanyaan($id)
     {
-        $tag_id = DB::table('pertanyaan_tag')->where('tag_id', '=', $id)->select('pertanyaan_id')->get();
+        $pertanyaan = DB::table('pertanyaan')->where('tag_id', '=', $id)->get();
+        // $tag_id = DB::table('pertanyaan')->where('tag_id', '=', $id)->select('user_id')->get();
+        $tag_id = Pertanyaan::where('tag_id', $id)->get();
         $tag_name = Tag::where('id', '=', $id)->first()->tag_name;
+        $user = User::all();
         $new_id  = $id;
         //dd($id);
-        return view('user.showDataTags', compact('tag_name', 'tag_id', 'new_id'));
+        return view('user.showDataTags', compact('tag_name','tag_id', 'pertanyaan', 'new_id', 'user'));
     }
 }

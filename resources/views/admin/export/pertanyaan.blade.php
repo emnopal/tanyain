@@ -24,7 +24,7 @@
                     @foreach ($pertanyaan as $per)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$per->user->profile->nama_lengkap}}</td>
+                        <td>{{$per->user->profile->nama}}</td>
                         <td>
                             {{$per->judul}}
                         </td>

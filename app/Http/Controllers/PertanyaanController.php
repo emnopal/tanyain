@@ -48,34 +48,48 @@ class PertanyaanController extends Controller
     // tambah
     public function store(Request $request)
     {
-        $request->validate([
-            'profile' => 'required',
-            'judul' => 'required|min:8',
-            'isi' => 'required'
-        ]);
+        // $request->validate([
+        //     'profile' => 'required',
+        //     'judul' => 'required|min:8',
+        //     'isi' => 'required'
+        // ]);
 
-        $tags_arr = explode(',', $request["tags"]);
+        // $tags_arr = explode(',', $request["tags"]);
 
-        $tags_id = [];
-        foreach ($tags_arr as $tag_name) {
-            $tag = Tag::firstOrCreate(['tag_name' => $tag_name]);
-            $tags_id[] = $tag->id;
-        }
+        // $tags_id = [];
+        // foreach ($tags_arr as $tag_name) {
+        //     $tag = Tag::firstOrCreate(['tag_name' => $tag_name]);
+        //     $tags_id[] = $tag->id;
+        // }
 
+
+        // $pertanyaan = new Pertanyaan;
+        // $pertanyaan->judul = $request->judul;
+        // $pertanyaan->isi = ImgToBase64::convert($request->isi);
+        // $pertanyaan->user_id = $request->profile;
+
+        // $pertanyaan->save();
+
+        // $pertanyaan->tags()->sync($tags_id);
+        // $user = User::find($request->profile);
+        // $user->pertanyaan()->save($pertanyaan);
+
+        // Alert::success('Berhasil', 'Pertanyaan Berhasil di tambahkan');
+        // return redirect('pertanyaan');
+
+        $tag = Tag::firstOrCreate(['tag_name' => $request["tags"]]);
 
         $pertanyaan = new Pertanyaan;
-        $pertanyaan->judul = $request->judul;
+        $pertanyaan->judul = $request->isi;
         $pertanyaan->isi = ImgToBase64::convert($request->isi);
-        $pertanyaan->user_id = $request->profile;
-
+        $pertanyaan->user_id = auth()->user()->id;
+        $pertanyaan->tag_id = $tag->id;
         $pertanyaan->save();
-
-        $pertanyaan->tags()->sync($tags_id);
-        $user = User::find($request->profile);
-        $user->pertanyaan()->save($pertanyaan);
+//      $user = Auth::user();
+//      $user->pertanyaan()->save($pertanyaan);
 
         Alert::success('Berhasil', 'Pertanyaan Berhasil di tambahkan');
-        return redirect('pertanyaan');
+        return redirect('pertanyaan');//->with('sukses', 'data anda berhasil di tambahkan');
     }
 
     /**
@@ -115,13 +129,13 @@ class PertanyaanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul' => 'required|min:8',
+            'judul' => 'required',
             'isi' => 'required'
         ]);
         Pertanyaan::where('id', $id)
             ->update(['judul' => $request->judul, 'isi' => ImgToBase64::convert($request->isi)]);
         Alert::success('Berhasil', 'Pertanyaan Berhasil di Update');
-        return redirect('pertanyaan')->with('sukses', 'data anda berhasil di update');
+        return redirect('pertanyaan');//->with('sukses', 'data anda berhasil di update');
     }
 
     /**

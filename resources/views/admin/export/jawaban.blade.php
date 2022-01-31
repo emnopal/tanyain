@@ -27,14 +27,15 @@
                     @foreach ($jawaban as $jwb)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$jwb->pertanyaan->user->profile->nama_lengkap}}</td>
+                            <td>{{$jwb->pertanyaan->user->profile->nama}}</td>
                             <td>{!!$jwb->pertanyaan->judul!!}</td>
                             <td>{!!$jwb->pertanyaan->isi!!}</td>
                             <td>{!!$jwb->isi!!}</td>
                             <td>
-                                @foreach ($jwb->pertanyaan->tags as $tag)
+                                {{-- @foreach ($jwb->pertanyaan->tags as $tag)
                                 <button class="btn btn-primary btn-sm">{{$tag->tag_name ? $tag->tag_name:'No tags' }}</button>
-                                @endforeach
+                                @endforeach --}}
+                                <button class="btn btn-primary btn-sm">{{\App\Models\Tag::where('id', '=',$jwb->pertanyaan->tag_id)->first()->tag_name}}</button>
                             </td>
                         </tr>
                     @endforeach

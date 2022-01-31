@@ -58,6 +58,7 @@ class ForumController extends Controller
         $jawaban->pertanyaan_id = $id;
         $jawaban->user_id = auth()->user()->id;
         $jawaban->save();
+        Alert::success('Berhasil', 'Jawaban Berhasil di tambahkan');
         return redirect('/forum/show/' . $id)->with('sukses', 'data anda berhasil di tambahkan');
     }
 
