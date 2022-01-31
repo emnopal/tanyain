@@ -66,7 +66,10 @@ class ForumController extends Controller
     {
         $user = User::where('id', '!=', Auth::user()->id)->get();
         $pertanyaan = Pertanyaan::find($id);
-        return view('user.edit', compact('pertanyaan', 'user'));
+        $tag_id = Pertanyaan::where('id', $id)->select('tag_id')->first();
+        $tag_nama = Tag::where('id', $tag_id->tag_id)->first();
+        //dd($tag_nama);
+        return view('user.edit', compact('pertanyaan', 'user', 'tag_nama'));
     }
 
     public function edit2($id)
@@ -80,10 +83,12 @@ class ForumController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'isi' => 'required'
+            'isi' => 'required',
+            'tags' => 'required'
         ]);
+        $tag = Tag::firstOrCreate(['tag_name' => $request["tags"]]);
         Pertanyaan::where('id', $id)
-            ->update(['judul' => $request->judul, 'isi' => $request->isi]);
+            ->update(['judul' => $request->judul, 'isi' => $request->isi, 'tag_id' => $tag->id]);
         Alert::success('Berhasil', 'Pertanyaan Berhasil di Update');
         return redirect('/forum/show/' . $id);
     }

@@ -55,7 +55,7 @@
                         <td>
                             {{-- <a href="jawaban/{{$jwb->id}}" class="btn  btn-success">SHOW</a> --}}
                             <a href="jawaban/{{$jwb->id}}/edit" class="btn  btn-primary">UPDATE</a>
-                            <form action="/hapus/{{$jwb->id}}" method="POST" class="d-inline">
+                            <form action="/jawaban/{{$jwb->id}}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="submit btn badge-danger">HAPUS</button>

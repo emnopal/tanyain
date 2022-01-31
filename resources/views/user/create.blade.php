@@ -3,7 +3,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 @section('content')
-    <section class="card" style="background: #2ace24;">
+    <section class="card" style="background: #8898aa;">
         <div class="card-header">
             <h3 class="card-title text-dark">Masukan pertanyaan anda</h3>
         </div>
@@ -16,7 +16,7 @@
                            placeholder="masukan judul" id="judul">
                 </div>
                 <div class="form-group" style="background-color: white !important;">
-                    <label for="isi" style="background: #2ace24; width: 100%" >Isi Pertanyaan</label>
+                    <label for="isi" style="background: #8898aa; width: 100%" >Isi Pertanyaan</label>
                     <textarea name="isi" id="isi" class="form-control my-editor summernote" ></textarea>
                     @error('isi')
                     <div class="invalid-feedback mt-2">{{ $message }}</div>

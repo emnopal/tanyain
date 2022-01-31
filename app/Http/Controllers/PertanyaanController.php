@@ -145,7 +145,7 @@ class PertanyaanController extends Controller
      * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     // hapus
-    public function destroy(Pertanyaan $pertanyaan, $id)
+    public function destroy($id)
     {
         Pertanyaan::where('id', $id)->delete();
         Alert::success('Berhasil', 'Pertanyaan Berhasil di hapus');

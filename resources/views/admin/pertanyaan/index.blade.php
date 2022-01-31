@@ -33,7 +33,7 @@
                     <th style="width: 10px">no</th>
                     <th>Nama User</th>
                     <th>judul</th>
-                    <th>Pertanyaan</th>
+                    <th style="width: 280px">Pertanyaan</th>
                     <th style="width: auto">Tags</th>
                     <th style="width: 280px">Action</th>
                 </tr>

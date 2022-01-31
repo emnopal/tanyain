@@ -1,10 +1,10 @@
-    <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: #2ace24; background: ">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: #8965e0; background: ">
         <!-- Brand Logo -->
         <a href="/" class="brand-link">
         <img src="{{ asset('user/images/AdminLTELogo.png') }}"
             class="brand-image mt-1 ml-4 mr-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-bold text-dark">Forum QnA</span>
+        <span class="brand-text font-weight-bold text-dark">Tanya.!n</span>
         </a>
 
         <!-- Sidebar -->

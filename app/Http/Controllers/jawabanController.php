@@ -113,7 +113,7 @@ class jawabanController extends Controller
      * @param \App\Models\Jawaban $jawaban
      * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function destroy(Jawaban $jawaban, $id)
+    public function destroy($id)
     {
         Jawaban::where('id', $id)->delete();
         Alert::success('Berhasil', 'Jawaban Berhasil di hapus');
