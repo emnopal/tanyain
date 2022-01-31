@@ -2,7 +2,7 @@
 Tanya.!n (Tanya.in) merupakan project untuk memenuhi tugas akhir yang diberikan oleh Kelompok 19.<br>
 Anggota Kelompok: <br>
 - Husnul Hayati (@husnulhayati)
-- Putu Priyatna Pradipta (@priyana_Pradipta)
+- Putu Priyatna Pradipta (@Priyana_Pradipta)
 - Muhammad Naufal (@emnopal)
 <br>
 
